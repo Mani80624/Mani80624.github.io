@@ -1,85 +1,440 @@
-/* Reset básico para eliminar márgenes y paddings predeterminados */
+/* Tipografías locales */
+@font-face {
+    font-family: "Jost";
+    src: url(../fonts/Jost/Jost-VariableFont_wght.ttf) format("truetype");
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Paleta y medidas */
+:root {
+    --fondo: #0b1220;
+    --superficie: #131c2e;
+    --borde: #23304a;
+    --texto: #e6ebf3;
+    --texto-suave: #9aa6bd;
+    --acento: #4f8cff;
+    --acento-suave: rgba(79, 140, 255, 0.12);
+    --radio: 14px;
+    --ancho: 1080px;
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 72px;
+}
+
 body {
-    background-image: url(/Images/ales-nesetril-Im7lZjxeLhg-unsplash.jpg);
-    background-size: cover;
-    color: #fff;
-    font-family: Arial, sans-serif;
+    background: var(--fondo);
+    color: var(--texto);
+    font-family: "Jost", system-ui, sans-serif;
+    font-size: 17px;
+    line-height: 1.6;
 }
 
-/* Imagen de perfil */
-.imagen-portafolio {
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.contenedor {
+    width: 100%;
+    max-width: var(--ancho);
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Barra de navegación */
+.nav {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(11, 18, 32, 0.85);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--borde);
+}
+
+.nav-interior {
     display: flex;
-    justify-content: center;
-    margin-top: 20px;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
 }
 
-.class-image {
-    width: 150px;
+.marca {
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+.nav-enlaces {
+    display: flex;
+    gap: 24px;
+    font-size: 15px;
+    color: var(--texto-suave);
+}
+
+.nav-enlaces a:hover {
+    color: var(--texto);
+}
+
+/* Presentación */
+.hero {
+    display: flex;
+    align-items: center;
+    gap: 48px;
+    padding-top: 88px;
+    padding-bottom: 72px;
+}
+
+.foto {
+    width: 240px;
+    height: 240px;
+    flex-shrink: 0;
     border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--borde);
+    box-shadow: 0 0 0 8px var(--acento-suave);
 }
 
-/* Descripción */
-.description {
+.saludo {
+    color: var(--acento);
+    font-weight: 500;
+}
+
+h1 {
+    font-size: clamp(34px, 5vw, 52px);
+    line-height: 1.1;
+    font-weight: 700;
+    margin: 4px 0 10px;
+}
+
+.rol {
+    font-size: 20px;
+    color: var(--texto-suave);
+    margin-bottom: 16px;
+}
+
+.resumen {
+    max-width: 560px;
+    color: var(--texto-suave);
+}
+
+.acciones {
     display: flex;
-    justify-content: center;
-    color: antiquewhite;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 28px;
+}
+
+.boton {
+    display: inline-block;
+    padding: 11px 22px;
+    border-radius: 10px;
+    font-weight: 500;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.boton-primario {
+    background: var(--acento);
+    color: #fff;
+}
+
+.boton-primario:hover {
+    background: #3a76e8;
+}
+
+.boton-secundario {
+    border: 1px solid var(--borde);
+}
+
+.boton-secundario:hover {
+    border-color: var(--acento);
+}
+
+/* Secciones */
+.seccion {
+    padding-top: 56px;
+    padding-bottom: 56px;
+    border-top: 1px solid var(--borde);
+}
+
+h2 {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.parrafo {
+    max-width: 720px;
+    color: var(--texto-suave);
+}
+
+.habilidades,
+.tecnologias {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    list-style: none;
+}
+
+.habilidades {
     margin-top: 20px;
-    text-align: center;
-    font-family: "Jost Regular";
-    font-size: 150%;
-    padding-left: 15%;
-    padding-right: 15%;
 }
 
-/* Botones */
-.buttons {
+.habilidades li,
+.tecnologias li {
+    padding: 4px 12px;
+    border-radius: 999px;
+    background: var(--acento-suave);
+    color: #bcd2ff;
+    font-size: 14px;
+}
+
+/* Proyectos */
+.proyectos {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+}
+
+.tarjeta {
     display: flex;
+    flex-direction: column;
+    background: var(--superficie);
+    border: 1px solid var(--borde);
+    border-radius: var(--radio);
+    overflow: hidden;
+    transition: transform 0.2s, border-color 0.2s;
+}
+
+.tarjeta:hover {
+    transform: translateY(-3px);
+    border-color: var(--acento);
+}
+
+.tarjeta-visual {
+    aspect-ratio: 2.1 / 1;
+    background: #0f172a;
+}
+
+.tarjeta-visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.visual-neria {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
+    gap: 16px;
+    background: radial-gradient(circle at 30% 20%, #1e3a8a 0%, #0f172a 70%);
 }
 
-.d-grid.gap-6 {
-    padding-left: 20%;
-    padding-right: 20%;
-    gap: 20px;
-    font-family: "Jost Regular";
-    padding-bottom: 5%;
+.neria-logo {
+    font-size: 44px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    background: linear-gradient(90deg, #93c5fd, #c4b5fd);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
 }
 
-/* Logos en los botones */
-.logo {
-    width: 25px;
-    margin-left: 10px;
-    float: right;
+.niveles {
+    display: flex;
+    gap: 8px;
+}
+
+.nivel {
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 13px;
+    border: 1px solid;
+}
+
+.nivel.bajo { color: #86efac; border-color: #86efac55; }
+.nivel.medio { color: #fcd34d; border-color: #fcd34d55; }
+.nivel.alto { color: #fca5a5; border-color: #fca5a555; }
+
+.tarjeta-cuerpo {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 24px;
+    flex-grow: 1;
+}
+
+.tarjeta-cuerpo h3 {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.tarjeta-cuerpo p {
+    color: var(--texto-suave);
+    font-size: 16px;
+}
+
+.tarjeta-cuerpo .etiqueta {
+    color: var(--acento);
+    font-size: 13px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.enlace-repo {
+    margin-top: auto;
+    padding-top: 8px;
+    color: var(--acento);
+    font-weight: 500;
+}
+
+.enlace-repo:hover {
+    text-decoration: underline;
+}
+
+/* Otros enlaces */
+.mas {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-top: 32px;
+}
+
+.mas a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 16px;
+    border: 1px solid var(--borde);
+    border-radius: 10px;
+    font-size: 15px;
+    transition: border-color 0.2s;
+}
+
+.mas a:hover {
+    border-color: var(--acento);
+}
+
+.mas img,
+.redes img {
+    width: 22px;
+    height: 22px;
     filter: invert(1);
 }
 
-/* Ajuste para los botones */
-.btn-primary {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-}
-.nombre{
-    text-align: center;
-    font-family: "Poetsen One";
+/* Pie de página */
+.pie {
+    background: var(--superficie);
+    border-top: 1px solid var(--borde);
+    padding: 48px 0 24px;
+    margin-top: 32px;
 }
 
-@font-face{
-    font-family: "Poetsen One";
-    src: url(/fonts/PoetsenOne-Regular.ttf) format('truetype');
-    font-style: normal;
-    font-weight: normal;
+.pie-interior {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
 }
-@font-face{
-    font-family: "Jost Regular";
-    src: url(/fonts/Jost/static/Jost-Regular.ttf) format('truetype');
-    font-style: normal;
-    font-weight: normal;
+
+.pie p {
+    color: var(--texto-suave);
+}
+
+.pie h2 {
+    margin-bottom: 6px;
+}
+
+.redes {
+    display: flex;
+    gap: 12px;
+}
+
+.redes a {
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    border: 1px solid var(--borde);
+    border-radius: 50%;
+    transition: border-color 0.2s;
+}
+
+.redes a:hover {
+    border-color: var(--acento);
+}
+
+.derechos {
+    margin-top: 32px;
+    font-size: 14px;
+}
+
+/* Celular y tableta */
+@media (max-width: 860px) {
+    .proyectos {
+        grid-template-columns: 1fr;
+    }
+
+    .mas {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .nav-enlaces {
+        gap: 16px;
+        font-size: 14px;
+    }
+
+    .marca {
+        display: none;
+    }
+
+    .nav-interior {
+        justify-content: center;
+    }
+
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        gap: 28px;
+        padding-top: 48px;
+    }
+
+    .foto {
+        width: 180px;
+        height: 180px;
+    }
+
+    .acciones {
+        justify-content: center;
+    }
+
+    .resumen {
+        margin: 0 auto;
+    }
+
+    .mas {
+        grid-template-columns: 1fr;
+    }
+
+    .pie-interior {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .neria-logo {
+        font-size: 34px;
+    }
 }
